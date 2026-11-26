@@ -31,7 +31,13 @@ OpenCode desktop → the session's tab is open and active
 
 ## Install the plugin
 
-### From GitHub (recommended)
+### From npm (recommended)
+
+```sh
+opencode plugin add opencode-deja-resume
+```
+
+### From GitHub
 
 ```sh
 opencode plugin add github:AndrewGoal/opencode-deja-resume
