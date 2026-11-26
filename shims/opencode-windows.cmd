@@ -27,6 +27,7 @@ set "DIR=%USERPROFILE%\.local\share\opencode"
 if not exist "%DIR%" mkdir "%DIR%" >nul 2>&1
 for /f %%t in ('powershell -NoProfile -Command "[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds()"') do set "NOW=%%t"
 > "%DIR%\deja-resume.json" echo {"session":"%SID%","time":%NOW%}
+echo opencode -s %SID%
 
 set "APP="
 if exist "%OPENCODE_DESKTOP%" set "APP=%OPENCODE_DESKTOP%"
@@ -36,7 +37,7 @@ if not defined APP if exist "%ProgramFiles%\OpenCode\OpenCode.exe" set "APP=%Pro
 if not defined APP if exist "%USERPROFILE%\scoop\apps\opencode-desktop\current\OpenCode.exe" set "APP=%USERPROFILE%\scoop\apps\opencode-desktop\current\OpenCode.exe"
 
 if defined APP (
-  tasklist /FI "IMAGENAME eq OpenCode.exe" 2>nul | find /I "OpenCode.exe" >nul
+  tasklist /FI "IMAGENAME eq OpenCode.exe" 2>nul | "%SystemRoot%\System32\find.exe" /I "OpenCode.exe" >nul
   if errorlevel 1 start "" "%APP%"
 )
 exit /b 0

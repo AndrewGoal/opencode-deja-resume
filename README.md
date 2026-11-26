@@ -83,6 +83,8 @@ opencode ses_xxx
 ```
 
 The desktop app opens (or comes to the front) with that session's tab active.
+The shim also prints the exact `opencode -s <id>` line it received, so you can
+copy it for later or reproduce the resume without `deja`.
 
 > `deja resume ses_xxx` without `--exec` only prints the command. That is deja's
 > own behavior; add `--exec` to run it.

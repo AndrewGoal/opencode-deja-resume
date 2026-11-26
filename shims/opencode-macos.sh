@@ -21,6 +21,7 @@ resume_desktop() {
   now=$(( $(date +%s) * 1000 ))
   tmp="$dir/deja-resume.json.tmp"
   printf '{"session":"%s","time":%s}\n' "$sid" "$now" > "$tmp" && mv "$tmp" "$dir/deja-resume.json"
+  printf 'opencode -s %s\n' "$sid"
   if /usr/bin/open -b ai.opencode.desktop >/dev/null 2>&1; then
     return 0
   fi

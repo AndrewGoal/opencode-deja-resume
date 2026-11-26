@@ -21,6 +21,7 @@ resume_desktop() {
   now=$(( $(date +%s) * 1000 ))
   tmp="$dir/deja-resume.json.tmp"
   printf '{"session":"%s","time":%s}\n' "$sid" "$now" > "$tmp" && mv "$tmp" "$dir/deja-resume.json"
+  printf 'opencode -s %s\n' "$sid"
 
   # If the app is already running, the plugin's main process picks up the
   # request and focuses the window itself. Only start it when it is absent.
