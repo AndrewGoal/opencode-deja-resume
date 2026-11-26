@@ -71,6 +71,19 @@ sudo install -m 755 shims/opencode-macos.sh /usr/local/bin/opencode
 # Linux: use shims/opencode-linux.sh instead
 ```
 
+On Linux with mise (or another version manager) activating its own `opencode`
+ahead of `/usr/local/bin`, put the shim in a directory you prepend in your
+shell rc. mise rebuilds its command wrappers, so a symlink inside its own
+directory does not survive:
+
+```sh
+mkdir -p ~/.local/share/opencode-shim/bin
+ln -sf /usr/local/bin/opencode ~/.local/share/opencode-shim/bin/opencode
+echo 'export PATH="$HOME/.local/share/opencode-shim/bin:$PATH"' >> ~/.bashrc
+```
+
+Then open a new terminal or run `source ~/.bashrc`.
+
 On Windows, copy `shims/opencode-windows.cmd` to `%USERPROFILE%\bin\opencode.cmd`
 and make sure `%USERPROFILE%\bin` comes before `%USERPROFILE%\scoop\shims`
 (or wherever the real `opencode.exe` lives) in the user `PATH`.
