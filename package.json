@@ -1,0 +1,28 @@
+{
+  "name": "opencode-deja-resume",
+  "version": "0.1.0",
+  "description": "Open a specific session tab in the OpenCode desktop app, from deja resume or any CLI.",
+  "license": "MIT",
+  "author": "AndrewGoal",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndrewGoal/opencode-deja-resume.git"
+  },
+  "keywords": [
+    "opencode",
+    "opencode-plugin",
+    "deja",
+    "resume",
+    "session",
+    "electron"
+  ],
+  "files": [
+    "gui-experimental.cjs",
+    "shims",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    "./gui-experimental": "./gui-experimental.cjs"
+  }
+}
