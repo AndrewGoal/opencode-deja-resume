@@ -109,7 +109,9 @@ owned by the user and only opens a session the local server already knows.
 ## Compatibility
 
 - macOS: verified with OpenCode Desktop 2.4.2.
-- Linux: verified with OpenCode Desktop 2.3.0.
+- Linux: verified with OpenCode Desktop 2.3.0 on Hyprland/Wayland. The shim
+  starts the app with `--ozone-platform=wayland` on a Wayland session, so a
+  launch from SSH, a script, or a non-graphical shell also works.
 - Windows: verified at the plugin level with OpenCode Desktop 2.3.2; the shim
   is included but Windows has more install layouts, so adjust the paths in
   `shims/opencode-windows.cmd` if needed.

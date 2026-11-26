@@ -26,12 +26,19 @@ resume_desktop() {
   # request and focuses the window itself. Only start it when it is absent.
   if ! pgrep -f "electron.*opencode-desktop" >/dev/null 2>&1; then
     if command -v opencode-desktop >/dev/null 2>&1; then
-      setsid -f opencode-desktop >/dev/null 2>&1
+      app=opencode-desktop
     elif [ -x /usr/bin/opencode-desktop ]; then
-      setsid -f /usr/bin/opencode-desktop >/dev/null 2>&1
+      app=/usr/bin/opencode-desktop
     else
       rm -f "$dir/deja-resume.json"
       return 1
+    fi
+    # Electron defaults to X11; on a Wayland session start it on Wayland so a
+    # launch from a non-graphical shell (SSH, cron, a script) still works.
+    if [ "${XDG_SESSION_TYPE:-}" = "wayland" ] || [ -n "${WAYLAND_DISPLAY:-}" ]; then
+      setsid -f "$app" --ozone-platform=wayland >/dev/null 2>&1
+    else
+      setsid -f "$app" >/dev/null 2>&1
     fi
   fi
   return 0
